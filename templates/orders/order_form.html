@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Список заказов</title>
+</head>
+<body>
+    <h1>{{ form.instance.pk|yesno:"Изменить заказ,Добавить заказ" }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="{% url 'order_list' %}">К списку заказов</a>
+</body>
+</html>

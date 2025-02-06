@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Список заказов</title>
+</head>
+<body>
+    <h1>Заказы</h1>
+    <form method="GET">
+        <input type="text" name="search" placeholder="Введите статус или id">
+        <button type="submit">Поиск</button>
+    </form>
+    <a href="{% url 'order_create' %}">Добавить заказ</a>
+    <ul>
+        {% for order in orders %}
+            <li>
+                Стол №{{ order.table_number }} - {{ order.total_price }} RUR - {{ order.get_status_display }}
+                <a href="{% url 'order_update' order.id %}">Изменить</a>
+                <a href="{% url 'order_delete' order.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'order_revenue' %}">Выручка</a>
+</body>
+</html>
